@@ -1,0 +1,14 @@
+{
+  "name": "library-management-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Library Management System",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "build": "cd backend && npm install",
+    "install": "cd backend && npm install"
+  },
+  "keywords": ["library", "management", "api", "express", "mongodb"],
+  "author": "Library Management Team",
+  "license": "MIT"
+}
