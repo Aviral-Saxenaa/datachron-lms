@@ -1,0 +1,10 @@
+# Ignore frontend directory for backend-only Railway deployment
+frontend/
+docs/
+*.md
+.git/
+.gitignore
+package.json
+package-lock.json
+setup.js
+quick-start.*
