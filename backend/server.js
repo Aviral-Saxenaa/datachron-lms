@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const compression = require('compression');
+const helmet = require('helmet');
 
 // Load environment variables
 dotenv.config();
@@ -13,10 +15,19 @@ const userRoutes = require('./routes/users');
 
 const app = express();
 
+// Production middleware
+if (process.env.NODE_ENV === 'production') {
+  app.use(helmet());
+  app.use(compression());
+}
+
 // Middleware
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  credentials: true
+}));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Database connection
 mongoose.connect(process.env.MONGODB_URI, {
